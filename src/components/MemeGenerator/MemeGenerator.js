@@ -31,16 +31,16 @@ const MemeGenerator = () => {
         const { url } = e.target.dataset;
         const base64img = document.createElement("canvas");
         const baseImage = new Image();
+        baseImage.src = url;
+        baseImage.crossOrigin = "anonymous";
+        base64img.width = 450;
+        base64img.height = 450;
         baseImage.onload = function() {
             const ctx = base64img.getContext("2d");
             ctx.drawImage(baseImage, 0, 0, 450, 450);
             const dataURL = base64img.toDataURL("image/png");
             setSelectedImage(dataURL);
         }
-        baseImage.src = url;
-        baseImage.crossOrigin = "anonymous";
-        base64img.width = 450;
-        base64img.height = 450;
     }
 
 
