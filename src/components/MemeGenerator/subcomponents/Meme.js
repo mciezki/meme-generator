@@ -42,20 +42,17 @@ const Meme = ({ selectedImage }) => {
                 bottomY: `${offsetY}px`
             }
         }
-        console.log(typeof (e.clientX))
-        console.log(typeof (rect.left))
         return textPosition;
     }
 
     const handleMouseMove = (e) => {
         if (upperDrag || bottomDrag) {
             let textPosition = {};
+            textPosition = getElement(e);
             if (e.target.id === "uppertxt" && upperDrag) {
-                textPosition = getElement(e);
                 setUpperX(textPosition.upperX);
                 setUpperY(textPosition.upperY);
             } else if (e.target.id === "bottomtxt" && bottomDrag) {
-                textPosition = getElement(e);
                 setBottomX(textPosition.bottomX);
                 setBottomY(textPosition.bottomY);
             }
@@ -69,17 +66,17 @@ const Meme = ({ selectedImage }) => {
             setUpperDrag(textPosition.upperDrag);
             setUpperX(textPosition.upperX);
             setUpperY(textPosition.upperY);
-            console.log(textPosition)
-            console.log(textPosition.upperX)
+            console.log(upperDrag)
         } else if (e.target.id === "bottomtxt") {
             setBottomDrag(textPosition.bottomDrag);
             setBottomX(textPosition.bottomX);
             setBottomY(textPosition.bottomY);
+            console.log(bottomDrag)
         }
     }
 
-    const handleMouseUp = () => {
-        document.removeEventListener('mousemove', (e) => handleMouseMove(e));
+    const handleMouseUp = (e) => {
+        document.removeEventListener('mousemove', () => handleMouseMove(e));
         setUpperDrag(false);
         setBottomDrag(false);
     }
@@ -137,7 +134,7 @@ const Meme = ({ selectedImage }) => {
                     dominantBaseline="middle"
                     textAnchor="middle"
                     onMouseDown={e => handleMouseDown(e)}
-                    onMouseUp={handleMouseUp}
+                    onMouseUp={e => handleMouseUp(e)}
                 >
                     {upperText}
                 </text>
@@ -149,7 +146,7 @@ const Meme = ({ selectedImage }) => {
                     dominantBaseline="middle"
                     textAnchor="middle"
                     onMouseDown={e => handleMouseDown(e)}
-                    onMouseUp={handleMouseUp}
+                    onMouseUp={e => handleMouseUp(e)}
                 >
                     {bottomText}
                 </text>
