@@ -29,18 +29,18 @@ const MemeGenerator = () => {
 
     const handleClick = (e) => {
         const { url } = e.target.dataset;
+        const base64img = document.createElement("canvas");
         const baseImage = new Image();
         baseImage.src = url;
         baseImage.crossOrigin = "anonymous";
-        const base64img = document.createElement("canvas");
         base64img.width = 450;
         base64img.height = 450;
-        const ctx = base64img.getContext("2d");
-        ctx.drawImage(baseImage, 0, 0, 450, 450);
-        const dataURL = base64img.toDataURL("image/png");
-        setSelectedImage(dataURL);
-        console.log(dataURL)
-        console.log(selectedImage)
+        baseImage.onload = function () {
+            const ctx = base64img.getContext("2d");
+            ctx.drawImage(baseImage, 0, 0, 450, 450);
+            const dataURL = base64img.toDataURL("image/png");
+            setSelectedImage(dataURL);
+        }
     }
 
 
