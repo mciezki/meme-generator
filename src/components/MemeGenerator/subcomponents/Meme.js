@@ -1,7 +1,88 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../meme.css'
 
-const Meme = ({ upperText, bottomText, selectedImage }) => {
+import Form from './Form';
+
+const Meme = ({ selectedImage }) => {
+    const [bottomText, setBottomText] = useState('');
+    const [upperText, setUpperText] = useState('');
+
+    const [upperX, setUpperX] = useState("50%");
+    const [upperY, setUpperY] = useState("10%");
+    const [bottomX, setBottomX] = useState("50%");
+    const [bottomY, setBottomY] = useState("90%");
+
+    const [upperDrag, setUpperDrag] = useState(false);
+    const [bottomDrag, setBottomDrag] = useState(false);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+
+        if (name === 'upperText') setUpperText(value);
+        else if (name === 'bottomText') setBottomText(value);
+    }
+
+    const getElement = (e) => {
+        let rect = document.getElementById('svgImage').getBoundingClientRect();
+        const offsetX = e.clientX - rect.left;
+        const offsetY = e.clientY - rect.top;
+        let textPosition = {}
+        if (e.target.id === "uppertxt") {
+            textPosition = {
+                upperDrag: true,
+                bottomDrag: false,
+                upperX: `${offsetX}px`,
+                upperY: `${offsetY}px`
+            }
+        } else if (e.target.id === "bottomtxt") {
+            textPosition = {
+                upperDrag: false,
+                bottomDrag: true,
+                bottomX: `${offsetX}px`,
+                bottomY: `${offsetY}px`
+            }
+        }
+        console.log(typeof (e.clientX))
+        console.log(typeof (rect.left))
+        return textPosition;
+    }
+
+    const handleMouseMove = (e) => {
+        if (upperDrag || bottomDrag) {
+            let textPosition = {};
+            if (e.target.id === "uppertxt" && upperDrag) {
+                textPosition = getElement(e);
+                setUpperX(textPosition.upperX);
+                setUpperY(textPosition.upperY);
+            } else if (e.target.id === "bottomtxt" && bottomDrag) {
+                textPosition = getElement(e);
+                setBottomX(textPosition.bottomX);
+                setBottomY(textPosition.bottomY);
+            }
+        }
+    };
+
+    const handleMouseDown = (e) => {
+        const textPosition = getElement(e);
+        document.addEventListener('mousemove', (event) => handleMouseMove(event));
+        if (e.target.id === "uppertxt") {
+            setUpperDrag(textPosition.upperDrag);
+            setUpperX(textPosition.upperX);
+            setUpperY(textPosition.upperY);
+            console.log(textPosition)
+            console.log(textPosition.upperX)
+        } else if (e.target.id === "bottomtxt") {
+            setBottomDrag(textPosition.bottomDrag);
+            setBottomX(textPosition.bottomX);
+            setBottomY(textPosition.bottomY);
+        }
+    }
+
+    const handleMouseUp = () => {
+        document.removeEventListener('mousemove', (e) => handleMouseMove(e));
+        setUpperDrag(false);
+        setBottomDrag(false);
+    }
 
     const convertSvgToImage = () => {
         const svg = document.getElementById("createdMeme");
@@ -35,6 +116,7 @@ const Meme = ({ upperText, bottomText, selectedImage }) => {
 
     return (
         <>
+            <Form upperValue={upperText} bottomValue={bottomText} handleChange={handleChange} />
             <svg
                 id="createdMeme"
                 width="450px"
@@ -48,31 +130,32 @@ const Meme = ({ upperText, bottomText, selectedImage }) => {
                     width="450px"
                 />
                 <text
+                    id="uppertxt"
                     style={{ ...textStyle, zIndex: 1 }}
-                    x="50%"
-                    y="10%"
+                    x={upperX}
+                    y={upperY}
                     dominantBaseline="middle"
                     textAnchor="middle"
+                    onMouseDown={e => handleMouseDown(e)}
+                    onMouseUp={handleMouseUp}
                 >
                     {upperText}
                 </text>
                 <text
+                    id="bottomtxt"
                     style={textStyle}
+                    x={bottomX}
+                    y={bottomY}
                     dominantBaseline="middle"
                     textAnchor="middle"
-                    x="50%"
-                    y="90%"
+                    onMouseDown={e => handleMouseDown(e)}
+                    onMouseUp={handleMouseUp}
                 >
                     {bottomText}
                 </text>
             </svg>
             <button onClick={convertSvgToImage}>Download Meme!</button>
         </>
-        // <div className="meme">
-        //     <img src={selectedImage} alt='meme' />
-        //     <h2 className='top'>{upperText}</h2>
-        //     <h2 className='bottom'>{bottomText}</h2>
-        // </div>
     )
 }
 

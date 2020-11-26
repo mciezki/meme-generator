@@ -17,7 +17,6 @@ const Form = ({ upperValue, bottomValue, handleChange }) => {
                 value={bottomValue}
                 onChange={handleChange}
             />
-            <button>Make Canvas</button>
         </form>
     )
 }

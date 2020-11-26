@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-import Form from './subcomponents/Form';
 import Meme from './subcomponents/Meme';
 import Images from './subcomponents/Images';
 
 const MemeGenerator = () => {
-    const [bottomText, setBottomText] = useState('');
-    const [upperText, setUpperText] = useState('');
     const [selectedImage, setSelectedImage] = useState('');
     const [allMemeImg, setAllMemeImg] = useState([]);
 
@@ -18,13 +15,6 @@ const MemeGenerator = () => {
                 setAllMemeImg(memes)
             })
     }, [])
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-
-        if (name === 'upperText') setUpperText(value);
-        else if (name === 'bottomText') setBottomText(value);
-    }
 
 
     const handleClick = (e) => {
@@ -46,8 +36,7 @@ const MemeGenerator = () => {
 
     return (
         <>
-            {selectedImage ? <Form upperValue={upperText} bottomValue={bottomText} handleChange={handleChange} /> : null}
-            {selectedImage ? <Meme upperText={upperText} bottomText={bottomText} selectedImage={selectedImage} /> : null}
+            {selectedImage ? <Meme selectedImage={selectedImage} /> : null}
             <Images allMemeImg={allMemeImg} selectImg={handleClick} />
         </>
     )
