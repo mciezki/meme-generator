@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import '../meme.css'
 
 import Form from './Form';
 
 const Meme = ({ selectedImage }) => {
+
+    //STATES:
+
     const [bottomText, setBottomText] = useState('');
     const [upperText, setUpperText] = useState('');
 
@@ -12,8 +15,10 @@ const Meme = ({ selectedImage }) => {
     const [bottomX, setBottomX] = useState("50%");
     const [bottomY, setBottomY] = useState("90%");
 
-    const [upperDrag, setUpperDrag] = useState(false);
-    const [bottomDrag, setBottomDrag] = useState(false);
+    const [isGrabbed, setIsGrabbed] = useState(false);
+
+
+    //FORM EDIT:
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -22,66 +27,47 @@ const Meme = ({ selectedImage }) => {
         else if (name === 'bottomText') setBottomText(value);
     }
 
-    const getElement = (e) => {
-        let rect = document.getElementById('svgImage').getBoundingClientRect();
-        const offsetX = e.clientX - rect.left;
-        const offsetY = e.clientY - rect.top;
-        let textPosition = {}
-        if (e.target.id === "uppertxt") {
-            textPosition = {
-                upperDrag: true,
-                bottomDrag: false,
-                upperX: `${offsetX}px`,
-                upperY: `${offsetY}px`
-            }
-        } else if (e.target.id === "bottomtxt") {
-            textPosition = {
-                upperDrag: false,
-                bottomDrag: true,
-                bottomX: `${offsetX}px`,
-                bottomY: `${offsetY}px`
+    //GRAB AND DROP FUNCTIONS:
+
+    //1. Movement of the text:
+    const handleMouseMove = useCallback((e) => {
+        if (isGrabbed) {
+            let rect = document.getElementById('svgImage').getBoundingClientRect();
+            const offsetX = e.clientX - rect.left;
+            const offsetY = e.clientY - rect.top;
+            if (e.target.id === "uppertxt") {
+                setUpperX(`${offsetX}px`);
+                setUpperY(`${offsetY}px`);
+            } else if (e.target.id === "bottomtxt") {
+                setBottomX(`${offsetX}px`);
+                setBottomY(`${offsetY}px`);
             }
         }
-        return textPosition;
-    }
+    }, [isGrabbed]);
 
-    const handleMouseMove = (e) => {
-        if (upperDrag || bottomDrag) {
-            let textPosition = {};
-            textPosition = getElement(e);
-            if (e.target.id === "uppertxt" && upperDrag) {
-                setUpperX(textPosition.upperX);
-                setUpperY(textPosition.upperY);
-            } else if (e.target.id === "bottomtxt" && bottomDrag) {
-                setBottomX(textPosition.bottomX);
-                setBottomY(textPosition.bottomY);
-            }
+    //2. Movement start:
+    const handleMouseDown = useCallback(() => {
+        setIsGrabbed(true)
+    }, [])
+
+    //3. Movement end:
+    const handleMouseUp = useCallback(() => {
+        setIsGrabbed(false)
+    }, [])
+
+
+    //4. useEffect hook - update of changing state:
+    useEffect(() => {
+        if (isGrabbed) document.addEventListener('mousemove', handleMouseMove);
+
+        return () => {
+            document.removeEventListener('mousemove', handleMouseMove);
         }
-    };
+    }, [handleMouseMove, handleMouseUp, isGrabbed])
 
-    const handleMouseDown = (e) => {
-        const textPosition = getElement(e);
-        document.addEventListener('mousemove', (event) => handleMouseMove(event));
-        if (e.target.id === "uppertxt") {
-            setUpperDrag(textPosition.upperDrag);
-            setUpperX(textPosition.upperX);
-            setUpperY(textPosition.upperY);
-            console.log(upperDrag)
-        } else if (e.target.id === "bottomtxt") {
-            setBottomDrag(textPosition.bottomDrag);
-            setBottomX(textPosition.bottomX);
-            setBottomY(textPosition.bottomY);
-            console.log(bottomDrag)
-        }
-    }
 
-    const handleMouseUp = (e) => {
-        document.removeEventListener('mousemove', () => handleMouseMove(e));
-        setUpperDrag(false);
-        setBottomDrag(false);
-    }
-
-    const convertSvgToImage = () => {
+    //Download meme function:
+    const downloadMeme = () => {
         const svg = document.getElementById("createdMeme");
         let svgData = new XMLSerializer().serializeToString(svg);
         const canvas = document.createElement("canvas");
@@ -128,30 +114,30 @@ const Meme = ({ selectedImage }) => {
                 />
                 <text
                     id="uppertxt"
-                    style={{ ...textStyle, zIndex: 1 }}
+                    style={{ ...textStyle, zIndex: isGrabbed ? 4 : 1 }}
                     x={upperX}
                     y={upperY}
                     dominantBaseline="middle"
                     textAnchor="middle"
-                    onMouseDown={e => handleMouseDown(e)}
-                    onMouseUp={e => handleMouseUp(e)}
+                    onMouseDown={handleMouseDown}
+                    onMouseUp={handleMouseUp}
                 >
                     {upperText}
                 </text>
                 <text
                     id="bottomtxt"
-                    style={textStyle}
+                    style={{ ...textStyle, zIndex: 2 }}
                     x={bottomX}
                     y={bottomY}
                     dominantBaseline="middle"
                     textAnchor="middle"
-                    onMouseDown={e => handleMouseDown(e)}
-                    onMouseUp={e => handleMouseUp(e)}
+                    onMouseDown={handleMouseDown}
+                    onMouseUp={handleMouseUp}
                 >
                     {bottomText}
                 </text>
             </svg>
-            <button onClick={convertSvgToImage}>Download Meme!</button>
+            <button onClick={downloadMeme}>Download Meme!</button>
         </>
     )
 }
