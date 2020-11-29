@@ -1,8 +1,10 @@
 import React from 'react'
 
-const Form = ({ upperValue, bottomValue, handleChange }) => {
+const Form = ({ upperValue, bottomValue, textSize, handleChange }) => {
     return (
         <form>
+            <label>Add text: </label>
+            <br />
             <input
                 type="text"
                 name="upperText"
@@ -17,6 +19,14 @@ const Form = ({ upperValue, bottomValue, handleChange }) => {
                 value={bottomValue}
                 onChange={handleChange}
             />
+            <br />
+            <label>Font Size: </label>
+            <input
+                type="number"
+                name="textSize"
+                placeholder="Select font size"
+                value={textSize}
+                onChange={handleChange} />
         </form>
     )
 }

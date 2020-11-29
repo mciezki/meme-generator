@@ -23,11 +23,11 @@ const MemeGenerator = () => {
         const baseImage = new Image();
         baseImage.src = url;
         baseImage.crossOrigin = "anonymous";
-        base64img.width = 450;
-        base64img.height = 450;
+        base64img.width = 600;
+        base64img.height = 600;
         baseImage.onload = function () {
             const ctx = base64img.getContext("2d");
-            ctx.drawImage(baseImage, 0, 0, 450, 450);
+            ctx.drawImage(baseImage, 0, 0, 600, 600);
             const dataURL = base64img.toDataURL("image/png");
             setSelectedImage(dataURL);
         }

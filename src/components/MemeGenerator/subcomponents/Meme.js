@@ -9,6 +9,7 @@ const Meme = ({ selectedImage }) => {
 
     const [bottomText, setBottomText] = useState('');
     const [upperText, setUpperText] = useState('');
+    const [textSize, setTextSize] = useState(50)
 
     const [upperX, setUpperX] = useState("50%");
     const [upperY, setUpperY] = useState("10%");
@@ -25,6 +26,7 @@ const Meme = ({ selectedImage }) => {
 
         if (name === 'upperText') setUpperText(value);
         else if (name === 'bottomText') setBottomText(value);
+        else if (name === 'textSize') setTextSize(value);
     }
 
     //GRAB AND DROP FUNCTIONS:
@@ -90,7 +92,6 @@ const Meme = ({ selectedImage }) => {
 
     const textStyle = {
         fontFamily: "Impact",
-        fontSize: "50px",
         textTransform: "uppercase",
         fill: "#FFF",
         stroke: "#000",
@@ -99,22 +100,22 @@ const Meme = ({ selectedImage }) => {
 
     return (
         <>
-            <Form upperValue={upperText} bottomValue={bottomText} handleChange={handleChange} />
+            <Form upperValue={upperText} bottomValue={bottomText} textSize={textSize} handleChange={handleChange} />
             <svg
                 id="createdMeme"
-                width="450px"
-                height="450px"
+                width="600px"
+                height="600px"
                 xmlns="http://www.w3.org/2000/svg"
                 xmlnsXlink="http://www.w3.org/1999/xlink">
                 <image
                     id="svgImage"
                     xlinkHref={selectedImage}
-                    height="450px"
-                    width="450px"
+                    height="600px"
+                    width="600px"
                 />
                 <text
                     id="uppertxt"
-                    style={{ ...textStyle, zIndex: isGrabbed ? 4 : 1 }}
+                    style={{ ...textStyle, fontSize: `${textSize}px` }}
                     x={upperX}
                     y={upperY}
                     dominantBaseline="middle"
@@ -126,7 +127,7 @@ const Meme = ({ selectedImage }) => {
                 </text>
                 <text
                     id="bottomtxt"
-                    style={{ ...textStyle, zIndex: 2 }}
+                    style={{ ...textStyle, fontSize: `${textSize}px` }}
                     x={bottomX}
                     y={bottomY}
                     dominantBaseline="middle"
@@ -137,6 +138,7 @@ const Meme = ({ selectedImage }) => {
                     {bottomText}
                 </text>
             </svg>
+            <br />
             <button onClick={downloadMeme}>Download Meme!</button>
         </>
     )
