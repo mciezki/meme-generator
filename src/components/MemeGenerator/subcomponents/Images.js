@@ -4,9 +4,9 @@ const Images = ({ allMemeImg, selectImg }) => {
     const allImages = allMemeImg.map(img => <p key={img.id} onClick={selectImg} data-url={img.url}>{img.name}</p>)
 
     return (
-        <>
-            { allImages}
-        </>
+        <div>
+            {allMemeImg.length > 0 ? allImages : <span>Something is wrong...</span>}
+        </div>
     )
 }
 

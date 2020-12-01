@@ -24,9 +24,19 @@ const Meme = ({ selectedImage }) => {
     const handleChange = (e) => {
         const { name, value } = e.target;
 
-        if (name === 'upperText') setUpperText(value);
-        else if (name === 'bottomText') setBottomText(value);
-        else if (name === 'textSize') setTextSize(value);
+        switch (name) {
+            case 'upperText':
+                setUpperText(value);
+                break;
+            case 'bottomText':
+                setBottomText(value);
+                break;
+            case 'textSize':
+                setTextSize(value);
+                break;
+            default:
+                alert(`Sorry, ${name} does not exist. Report this to us and we will check what happened.`);
+        }
     }
 
     //GRAB AND DROP FUNCTIONS:

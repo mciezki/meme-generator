@@ -1,5 +1,7 @@
 import React from 'react'
 
+//NEED HARD CSS - alpha version
+
 const Form = ({ upperValue, bottomValue, textSize, handleChange }) => {
     return (
         <form>
