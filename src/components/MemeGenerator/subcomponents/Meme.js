@@ -109,7 +109,7 @@ const Meme = ({ selectedImage }) => {
     }
 
     return (
-        <>
+        <div className="memegen">
             <Form upperValue={upperText} bottomValue={bottomText} textSize={textSize} handleChange={handleChange} />
             <svg
                 id="createdMeme"
@@ -150,7 +150,7 @@ const Meme = ({ selectedImage }) => {
             </svg>
             <br />
             <button onClick={downloadMeme}>Download Meme!</button>
-        </>
+        </ div>
     )
 }
 

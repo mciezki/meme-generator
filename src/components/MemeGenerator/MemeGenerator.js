@@ -30,15 +30,17 @@ const MemeGenerator = () => {
             ctx.drawImage(baseImage, 0, 0, 600, 600);
             const dataURL = base64img.toDataURL("image/png");
             setSelectedImage(dataURL);
+            const chosen = document.querySelector('.maingen');
+            chosen.scrollIntoView({ behavior: "smooth" });
         }
     }
 
 
     return (
-        <>
+        <div className='maingen'>
             {selectedImage ? <Meme selectedImage={selectedImage} /> : null}
             <Images allMemeImg={allMemeImg} selectImg={handleClick} />
-        </>
+        </div>
     )
 }
 

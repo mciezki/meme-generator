@@ -2,13 +2,19 @@
     box-sizing: border-box;
   }
   
-  .meme, img {
+  .meme {
     position: relative;
     margin: auto;
     width: 450px;
     height: 450px;
     text-align: center;
+  }
+
+  .gallery-element {
     position: relative;
+    width: 15%;
+    margin: 0 auto;
+    cursor: pointer;
   }
 
   

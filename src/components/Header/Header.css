@@ -1,3 +1,57 @@
 header {
     height: 20vh;
+    background-color: #09a;
+    margin-bottom: 20px;
+}
+
+h1 {
+    padding: 10px 0 25px 0;
+}
+
+nav.main {
+    width: 100%;
+}
+
+nav.main ul {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 40%;
+    list-style-type: none;
+}
+
+nav.main ul li a {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    color: #000;
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: .5s;
+}
+
+nav.main ul li a:hover {
+    transform: translateY(-10px);
+}
+
+nav.main ul li a.active {
+    border-bottom: 10px solid #000;
+    transform: translateY(0);
+}
+
+nav.main ul li:nth-child(1) a.active {
+    border-color: #00e;
+}
+
+nav.main ul li:nth-child(2) a.active {
+    border-color: #0e0;
+}
+
+nav.main ul li:nth-child(3) a.active {
+    border-color: #e00;
+}
+
+nav.main ul li:nth-child(4) a.active {
+    border-color: #0ee;
 }
