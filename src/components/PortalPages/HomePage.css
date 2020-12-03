@@ -1,0 +1,34 @@
+.HomePage {
+    width: 100%;
+}
+
+.memeContainer {
+    margin: 10px auto 20px;
+    width: 45%;
+    background-color: lightblue;
+    border-radius: 5%;
+}
+
+.memeContainer .likes {
+    margin-bottom: 5px;
+    margin-left: 20px;
+    width: 20%;
+    background-color: #000;
+    color: #fff;
+    border-radius: 15%;
+}
+
+.memeContainer .likes span {
+    margin: 0 5px 0;
+    font-size: 16px;
+}
+
+.memeContainer .likes span.minus {
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.memeContainer .likes span.plus {
+    cursor: pointer;
+    font-size: 18px;
+}

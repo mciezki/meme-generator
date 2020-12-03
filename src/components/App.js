@@ -4,6 +4,7 @@ import './App.css';
 
 import Header from './Header/Header';
 import MemeGenerator from './MemeGenerator/MemeGenerator';
+import HomePage from './PortalPages/HomePage';
 
 function App() {
   return (
@@ -11,9 +12,7 @@ function App() {
       <div className="App">
         <Header />
         <Switch>
-          <Route path='/' exact render={() => (
-            <h2>Strona główna - wyświetlamy wszystkie nowe dodane memy</h2>
-          )} />
+          <Route path='/' exact component={HomePage} />
           <Route path='/topmemes' render={() => (
             <h2>Top memy - wyświetlamy memy posortowane po ilościu lajków</h2>
           )} />
