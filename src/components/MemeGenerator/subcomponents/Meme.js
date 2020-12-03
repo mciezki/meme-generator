@@ -80,7 +80,7 @@ const Meme = ({ selectedImage }) => {
     }, [handleMouseMove, handleMouseUp, isGrabbed])
 
 
-    //Download meme function:
+    //Download and post meme function:
     const manageMeme = (e) => {
         const { id } = e.target;
         const svg = document.getElementById("createdMeme");
