@@ -20,6 +20,9 @@ const Content = () => {
                 <h2>Top memy - wyświetlamy memy posortowane po ilościu lajków</h2>
             )} />
             <Route path='/generator' component={MemeGenerator} />
+            {user ? <Route path='/profile' render={() => (
+                <h2>Profil użytkownika</h2>
+            )} /> : null}
             <Route render={() => (
                 <h2>Strona nie istnieje...</h2>
             )} />

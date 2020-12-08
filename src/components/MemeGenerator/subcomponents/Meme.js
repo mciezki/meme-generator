@@ -1,11 +1,14 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import '../meme.css';
 
 import database from '../../../testDB';
 
 import Form from './Form';
+import { UserContext } from '../../../store/UserProvider';
 
 const Meme = ({ selectedImage }) => {
+    //USER AUTHENTICATE:
+    const { user } = useContext(UserContext);
 
     //STATES:
 
@@ -165,7 +168,7 @@ const Meme = ({ selectedImage }) => {
             <br />
             <button id='download' onClick={manageMeme}>Download Meme</button>
             <br />
-            <button id='post' onClick={manageMeme}>Post Meme</button>
+            {user ? <button id='post' onClick={manageMeme}>Post Meme</button> : null}
         </ div>
     )
 }
