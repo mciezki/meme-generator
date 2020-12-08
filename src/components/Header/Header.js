@@ -7,6 +7,7 @@ const list = [
     { name: "Start", path: "/", exact: true },
     { name: "Top Memes", path: "/topmemes" },
     { name: "Generator", path: "/generator" },
+    // { name: "Profile", path: "/profile" }
 ];
 
 const Header = () => {
