@@ -6,7 +6,7 @@ import database from '../../../testDB';
 import Form from './Form';
 import { UserContext } from '../../../store/UserProvider';
 
-const Meme = ({ selectedImage }) => {
+const Meme = ({ selectedImage, width, height }) => {
     //USER AUTHENTICATE:
     const { user } = useContext(UserContext);
 
@@ -83,6 +83,25 @@ const Meme = ({ selectedImage }) => {
     }, [handleMouseMove, handleMouseUp, isGrabbed])
 
 
+    //5. Function which select action on created meme:
+    const actionOnMeme = (id, canvasdata) => {
+        if (id === 'download') {
+            const a = document.createElement("a");
+            a.download = "meme.png";
+            a.href = canvasdata;
+            document.body.appendChild(a);
+            a.click();
+        } else if (id === 'post') {
+            //do zmiany z API - fetch
+            const newMeme = {
+                id: database.length,
+                url: canvasdata,
+                likes: 0
+            };
+            database.push(newMeme);
+        }
+    }
+
     //Download and post meme function:
     const manageMeme = (e) => {
         const { id } = e.target;
@@ -98,22 +117,7 @@ const Meme = ({ selectedImage }) => {
         img.onload = function () {
             canvas.getContext("2d").drawImage(img, 0, 0);
             const canvasdata = canvas.toDataURL("image/png");
-            if (id === 'download') {
-                const a = document.createElement("a");
-                a.download = "meme.png";
-                a.href = canvasdata;
-                document.body.appendChild(a);
-                a.click();
-            } else if (id === 'post') {
-                //do zmiany z API - fetch
-                const newMeme = {
-                    id: database.length,
-                    url: canvasdata,
-                    likes: 0
-                };
-                database.push(newMeme);
-                console.log(database)
-            }
+            actionOnMeme(id, canvasdata);
         };
     }
 
@@ -125,20 +129,21 @@ const Meme = ({ selectedImage }) => {
         userSelect: "none"
     }
 
+
     return (
         <div className="memegen">
             <Form upperValue={upperText} bottomValue={bottomText} textSize={textSize} handleChange={handleChange} />
             <svg
                 id="createdMeme"
-                width="600px"
-                height="600px"
+                width={width}
+                height={height}
                 xmlns="http://www.w3.org/2000/svg"
                 xmlnsXlink="http://www.w3.org/1999/xlink">
                 <image
                     id="svgImage"
                     xlinkHref={selectedImage}
-                    height="600px"
-                    width="600px"
+                    height={height}
+                    width={width}
                 />
                 <text
                     id="uppertxt"
@@ -168,8 +173,8 @@ const Meme = ({ selectedImage }) => {
             <br />
             <button id='download' onClick={manageMeme}>Download Meme</button>
             <br />
-            {user ? <button id='post' onClick={manageMeme}>Post Meme</button> : null}
-        </ div>
+            { user ? <button id='post' onClick={manageMeme}>Post Meme</button> : null}
+        </ div >
     )
 }
 
