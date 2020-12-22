@@ -10,8 +10,6 @@ import HomePage from '../PortalPages/HomePage';
 const Content = () => {
     const { user } = useContext(UserContext);
 
-    const isUserLogged = Boolean(user);
-    console.log(isUserLogged);
 
     return (
         <Switch>
