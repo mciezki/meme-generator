@@ -4,9 +4,9 @@
   "description": "Make and post your own meme on our page!",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "favicon.png",
       "sizes": "16x16",
-      "type": "image/x-icon"
+      "type": "image/png"
     },
     {
       "src": "memelogo.png",
