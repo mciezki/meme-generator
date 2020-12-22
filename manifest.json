@@ -5,12 +5,12 @@
   "icons": [
     {
       "src": "favicon.ico",
-      "sizes": "16x16",
+      "sizes": "{16}x{16}",
       "type": "image/x-icon"
     },
     {
       "src": "logo1.png",
-      "sizes": "192x192",
+      "sizes": "144x144",
       "type": "image/png",
       "purpose": "any maskable"
     }
