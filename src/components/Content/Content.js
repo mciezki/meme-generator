@@ -13,7 +13,7 @@ const Content = () => {
 
     return (
         <Switch>
-            <Route path='/' exact component={HomePage} />
+            <Route exact path="/" component={HomePage} />
             <Route path='/topmemes' render={() => (
                 <h2>Top memy - wyświetlamy memy posortowane po ilościu lajków</h2>
             )} />
