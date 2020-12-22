@@ -22,7 +22,7 @@ const App = () => {
     <>
       {isLoading ? <SplashScreen /> :
         <UserProvider>
-          <Router>
+          <Router basename={process.env.PUBLIC_URL}>
             <div className="App">
               <Header />
               <Content />
