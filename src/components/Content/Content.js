@@ -9,7 +9,6 @@ import HomePage from '../PortalPages/HomePage';
 
 const Content = () => {
     const { user } = useContext(UserContext);
-    console.log(user.uid)
 
     return (
         <Switch>
