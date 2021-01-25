@@ -119,7 +119,8 @@ const Meme = ({ selectedImage, width, height }) => {
             firestore
                 .collection('memes')
                 .add(newMeme);
-            console.alert('Meme posted :)')
+
+            alert('Meme posted :)')
         }
     }
 
