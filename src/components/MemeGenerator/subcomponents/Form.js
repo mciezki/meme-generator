@@ -2,9 +2,19 @@ import React from 'react'
 
 //NEED HARD CSS - alpha version
 
-const Form = ({ upperValue, bottomValue, textSize, handleChange }) => {
+const Form = ({ title, upperValue, bottomValue, textSize, handleChange }) => {
     return (
         <form>
+            <label>Name your meme:</label>
+            <br />
+            <input type="text"
+                name="title"
+                placeholder="Title..."
+                value={title}
+                onChange={handleChange}
+            />
+            <br />
+            <br />
             <label>Add text: </label>
             <br />
             <input

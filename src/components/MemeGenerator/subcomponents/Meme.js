@@ -1,10 +1,9 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import '../meme.css';
 
-import database from '../../../testDB';
-
 import Form from './Form';
 import { UserContext } from '../../../store/UserProvider';
+import { auth, firestore } from "../../../firebase";
 
 const Meme = ({ selectedImage, width, height }) => {
     //USER AUTHENTICATE:
@@ -12,6 +11,7 @@ const Meme = ({ selectedImage, width, height }) => {
 
     //STATES:
 
+    const [title, setTitle] = useState('');
     const [bottomText, setBottomText] = useState('');
     const [upperText, setUpperText] = useState('');
     const [textSize, setTextSize] = useState(50)
@@ -38,6 +38,9 @@ const Meme = ({ selectedImage, width, height }) => {
                 break;
             case 'textSize':
                 setTextSize(value);
+                break;
+            case 'title':
+                setTitle(value);
                 break;
             default:
                 alert(`Sorry, ${name} does not exist. Report this to us and we will check what happened.`);
@@ -83,8 +86,19 @@ const Meme = ({ selectedImage, width, height }) => {
     }, [handleMouseMove, handleMouseUp, isGrabbed])
 
 
+    const idGenerator = () => {
+        let result = '';
+        let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let charactersLength = characters.length;
+        for (let i = 0; i < charactersLength; i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    }
+
     //5. Function which select action on created meme:
     const actionOnMeme = (id, canvasdata) => {
+        const user = auth.currentUser;
         if (id === 'download') {
             const a = document.createElement("a");
             a.download = "meme.png";
@@ -94,11 +108,18 @@ const Meme = ({ selectedImage, width, height }) => {
         } else if (id === 'post') {
             //do zmiany z API - fetch
             const newMeme = {
-                id: database.length,
+                index: idGenerator(),
+                title,
+                creator: user.uid,
                 url: canvasdata,
-                likes: 0
+                likes: 0,
+                whoLiked: []
             };
-            database.push(newMeme);
+
+            firestore
+                .collection('memes')
+                .add(newMeme);
+            console.alert('Meme posted :)')
         }
     }
 
@@ -132,7 +153,7 @@ const Meme = ({ selectedImage, width, height }) => {
 
     return (
         <div className="memegen">
-            <Form upperValue={upperText} bottomValue={bottomText} textSize={textSize} handleChange={handleChange} />
+            <Form title={title} upperValue={upperText} bottomValue={bottomText} textSize={textSize} handleChange={handleChange} />
             <svg
                 id="createdMeme"
                 width={width}
