@@ -86,6 +86,7 @@ const Meme = ({ selectedImage, width, height }) => {
     }, [handleMouseMove, handleMouseUp, isGrabbed])
 
 
+    //5. Meme ID generator
     const idGenerator = () => {
         let result = '';
         let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -96,7 +97,7 @@ const Meme = ({ selectedImage, width, height }) => {
         return result;
     }
 
-    //5. Function which select action on created meme:
+    //6. Function which select action on created meme:
     const actionOnMeme = (id, canvasdata) => {
         const user = auth.currentUser;
         if (id === 'download') {
@@ -109,6 +110,7 @@ const Meme = ({ selectedImage, width, height }) => {
             //do zmiany z API - fetch
             const newMeme = {
                 index: idGenerator(),
+                date: new Date(),
                 title,
                 creator: user.uid,
                 url: canvasdata,
