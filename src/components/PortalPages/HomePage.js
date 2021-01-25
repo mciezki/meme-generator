@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import './HomePage.css'
 
-import { firestore } from "../../firebase";
+import {firestore} from "../../firebase";
 
 
 const HomePage = () => {
@@ -14,8 +14,16 @@ const HomePage = () => {
         })()
     }, [])
 
+    // sort by date
+    if (postedMemes.length >= 2) {
+        postedMemes.sort((e1, e2) => {
+            if (e1.date < e2.date) return 1
+            if (e1.date > e2.date) return -1
+            return 0
+        })
+    }
 
-    let memes = postedMemes.slice(0).reverse().map(meme => (
+    const memes = postedMemes.map(meme => (
         <div className="memeContainer" key={meme.index} id={meme.index}>
             <div className="likes">
                 <span className="minus">-</span>
@@ -23,10 +31,10 @@ const HomePage = () => {
                 <span className="plus">+</span>
             </div>
             <p className="title">{meme.title}</p>
-            <img src={meme.url} alt="meme" />
+            <img src={meme.url} alt="meme"/>
             <p className="creator">Posted by: <span>{meme.creator}</span></p>
-        </div>))
-
+        </div>
+    ))
 
     return (
         <div className="HomePage">{postedMemes.length > 0 ? memes : <p>No memes, sorry...</p>}</div>

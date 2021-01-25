@@ -1,13 +1,13 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import '../meme.css';
 
 import Form from './Form';
-import { UserContext } from '../../../store/UserProvider';
-import { auth, firestore } from "../../../firebase";
+import {UserContext} from '../../../store/UserProvider';
+import {auth, firestore} from "../../../firebase";
 
-const Meme = ({ selectedImage, width, height }) => {
+const Meme = ({selectedImage, width, height}) => {
     //USER AUTHENTICATE:
-    const { user } = useContext(UserContext);
+    const {user} = useContext(UserContext);
 
     //STATES:
 
@@ -27,7 +27,7 @@ const Meme = ({ selectedImage, width, height }) => {
     //FORM EDIT:
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
 
         switch (name) {
             case 'upperText':
@@ -117,18 +117,22 @@ const Meme = ({ selectedImage, width, height }) => {
                 likes: 0,
                 whoLiked: []
             };
-
-            firestore
-                .collection('memes')
-                .add(newMeme);
-
-            alert('Meme posted :)')
+            if (title === '') alert('You should add the title')
+            else {
+                firestore
+                    .collection('memes')
+                    .add(newMeme);
+                alert('Meme posted :)')
+                setTitle('')
+                setBottomText('')
+                setUpperText('')
+            }
         }
     }
 
     //Download and post meme function:
     const manageMeme = (e) => {
-        const { id } = e.target;
+        const {id} = e.target;
         const svg = document.getElementById("createdMeme");
         let svgData = new XMLSerializer().serializeToString(svg);
         const canvas = document.createElement("canvas");
@@ -156,7 +160,8 @@ const Meme = ({ selectedImage, width, height }) => {
 
     return (
         <div className="memegen">
-            <Form title={title} upperValue={upperText} bottomValue={bottomText} textSize={textSize} handleChange={handleChange} />
+            <Form title={title} upperValue={upperText} bottomValue={bottomText} textSize={textSize}
+                  handleChange={handleChange}/>
             <svg
                 id="createdMeme"
                 width={width}
@@ -171,7 +176,7 @@ const Meme = ({ selectedImage, width, height }) => {
                 />
                 <text
                     id="uppertxt"
-                    style={{ ...textStyle, fontSize: `${textSize}px` }}
+                    style={{...textStyle, fontSize: `${textSize}px`}}
                     x={upperX}
                     y={upperY}
                     dominantBaseline="middle"
@@ -183,7 +188,7 @@ const Meme = ({ selectedImage, width, height }) => {
                 </text>
                 <text
                     id="bottomtxt"
-                    style={{ ...textStyle, fontSize: `${textSize}px` }}
+                    style={{...textStyle, fontSize: `${textSize}px`}}
                     x={bottomX}
                     y={bottomY}
                     dominantBaseline="middle"
@@ -194,11 +199,11 @@ const Meme = ({ selectedImage, width, height }) => {
                     {bottomText}
                 </text>
             </svg>
-            <br />
+            <br/>
             <button id='download' onClick={manageMeme}>Download Meme</button>
-            <br />
-            { user ? <button id='post' onClick={manageMeme}>Post Meme</button> : null}
-        </ div >
+            <br/>
+            {user ? <button id='post' onClick={manageMeme}>Post Meme</button> : null}
+        </ div>
     )
 }
 
