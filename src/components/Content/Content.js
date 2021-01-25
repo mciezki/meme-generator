@@ -5,6 +5,7 @@ import { UserContext } from '../../store/UserProvider';
 
 import MemeGenerator from '../MemeGenerator/MemeGenerator';
 import HomePage from '../PortalPages/HomePage';
+import UserPage from '../PortalPages/UserPage';
 
 
 const Content = () => {
@@ -17,9 +18,7 @@ const Content = () => {
                 <h2>Top memy - wyświetlamy memy posortowane po ilościu lajków</h2>
             )} />
             <Route path='/generator' component={MemeGenerator} />
-            {user ? <Route path='/profile' render={() => (
-                <h2>Profil użytkownika</h2>
-            )} /> : null}
+            {user ? <Route path='/profile' component={UserPage} /> : null}
             <Route render={() => (
                 <h2>Strona nie istnieje...</h2>
             )} />
