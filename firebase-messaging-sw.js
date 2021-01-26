@@ -2,27 +2,6 @@ importScripts('https://www.gstatic.com/firebasejs/8.2.4/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/8.2.4/firebase-messaging.js');
 
 
-export function register() {
-    if ("serviceWorker" in navigator) {
-        navigator.serviceWorker
-            .register("./firebase-messaging-sw.js")
-            .then(function (registration) {
-                // Successful registration
-                console.log(
-                    "Hooray. Registration successful, scope is:",
-                    registration.scope
-                );
-            })
-            .catch(function (error) {
-                // Failed registration, service worker won’t be installed
-                console.log(
-                    "Whoops. Service worker registration failed, error:",
-                    error
-                );
-            });
-    }
-}
-
 var firebaseConfig = {
     apiKey: "AIzaSyA5kSJGlUmKC9PftAV8LyHcpdjoaOwKbJ8",
     authDomain: "meme-generator-fe1c4.firebaseapp.com",
