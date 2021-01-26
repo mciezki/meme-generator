@@ -8,9 +8,12 @@ import Header from './components/Header/Header';
 import Content from './components/Content/Content';
 import SplashScreen from './components/Content/SplashScreen';
 
+import { getToken } from './firebase';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [isTokenFound, setTokenFound] = useState(false);
+  getToken(setTokenFound);
 
   useEffect(() => {
     setTimeout(() => {
