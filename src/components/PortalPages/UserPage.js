@@ -15,8 +15,8 @@ const UserPage = () => {
         })()
     }, [])
 
-    if (postedMemes.length >= 2) {
-        postedMemes.sort((e1, e2) => {
+    if (userMemes.length >= 2) {
+        userMemes.sort((e1, e2) => {
             if (e1.date < e2.date) return 1
             if (e1.date > e2.date) return -1
             return 0
