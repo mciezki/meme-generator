@@ -19,9 +19,7 @@ const UserPage = () => {
     let memes = userMemes.filter(meme => meme.creator === user.uid ? meme : null).map(meme => (
         <div className="memeContainer" key={meme.index} id={meme.index}>
             <div className="likes">
-                <span className="minus">-</span>
-                <span className="like-num">{meme.likes}</span>
-                <span className="plus">+</span>
+                <span className="like-num">Zdobyta ilość polubień: {meme.likes}</span>
             </div>
             <p className="title">{meme.title}</p>
             <img src={meme.url} alt="meme" />
