@@ -16,7 +16,7 @@
     }
   ],
   "gcm_sender_id": "103953800507",
-  "start_url": ".",
+  "start_url": "./meme-generator/",
   "scope": ".",
   "display": "fullscreen",
   "theme_color": "#0099AA",
