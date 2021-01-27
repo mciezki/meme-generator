@@ -13,6 +13,7 @@ import { getToken } from './firebase';
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isTokenFound, setTokenFound] = useState(false);
+
   console.log(isTokenFound);
 
   useEffect(() => {
