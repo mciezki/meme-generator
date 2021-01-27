@@ -15,6 +15,7 @@
       "purpose": "any maskable"
     }
   ],
+  "gcm_sender_id": "103953800507",
   "start_url": ".",
   "scope": ".",
   "display": "fullscreen",
