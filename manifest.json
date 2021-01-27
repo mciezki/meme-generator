@@ -16,8 +16,8 @@
     }
   ],
   "gcm_sender_id": "103953800507",
-  "start_url": "https://mciezki.github.io/meme-generator/",
-  "scope": "https://mciezki.github.io/meme-generator/",
+  "start_url": ".",
+  "scope": ".",
   "display": "fullscreen",
   "theme_color": "#0099AA",
   "background_color": "#0099AA"
