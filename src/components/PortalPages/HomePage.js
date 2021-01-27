@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react';
-import './HomePage.css'
+import React, { useState, useEffect } from 'react';
+import Likes from '../Content/Likes';
+import './HomePage.css';
 
-import {firestore} from "../../firebase";
+import { firestore } from "../../firebase";
 
 
 const HomePage = () => {
@@ -25,19 +26,15 @@ const HomePage = () => {
 
     const memes = postedMemes.map(meme => (
         <div className="memeContainer" key={meme.index} id={meme.index}>
-            <div className="likes">
-                <span className="minus">-</span>
-                <span className="like-num">{meme.likes}</span>
-                <span className="plus">+</span>
-            </div>
             <p className="title">{meme.title}</p>
-            <img src={meme.url} alt="meme"/>
+            <Likes meme={meme} />
+            <img src={meme.url} alt="meme" />
             <p className="creator">Posted by: <span>{meme.creator}</span></p>
         </div>
     ))
 
     return (
-        <div className="HomePage">{postedMemes.length > 0 ? memes : <p>No memes, sorry...</p>}</div>
+        <div className="HomePage">{postedMemes.length > 0 ? memes : <p>Loading...</p>}</div>
     )
 }
 

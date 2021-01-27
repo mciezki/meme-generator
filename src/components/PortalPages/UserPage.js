@@ -23,21 +23,35 @@ const UserPage = () => {
         })
     }
 
+    const deleteMeme = (e) => {
+        const memeIndex = e.target.id;
+        let youSure = window.confirm("Are you sure?")
+        if (youSure === true) {
+            firestore.collection("memes").doc(`${memeIndex}`).delete()
+                .then(async () => {
+                    const snapshot = await firestore.collection('memes').get()
+                    setUserMemes(snapshot.docs.map(doc => doc.data()))
+                })
+        } else return;
+
+    }
+
     let memes = userMemes.filter(meme => meme.creator === user.uid ? meme : null).map(meme => (
         <div className="memeContainer" key={meme.index} id={meme.index}>
-            <div className="likes">
-                <span className="like-num">Zdobyta ilość polubień: {meme.likes}</span>
-            </div>
             <p className="title">{meme.title}</p>
+            <div className="likes">
+                <span className="like-num">Likes: {meme.likes.length}</span>
+            </div>
             <img src={meme.url} alt="meme" />
             <p className="creator">Posted by: <span>{meme.creator}</span></p>
+            <button id={meme.index} onClick={deleteMeme}>Delete</button>
         </div>))
 
 
     return (
         <div className="HomePage">
             <h4>Your created memes:</h4>
-            {userMemes.length > 0 ? memes : <p>No memes, sorry...</p>}
+            {userMemes.length > 0 ? memes : <p>You have no memes...</p>}
         </div>
     )
 }

@@ -3,7 +3,7 @@ import '../meme.css';
 
 import Form from './Form';
 import { UserContext } from '../../../store/UserProvider';
-import { auth, firestore } from "../../../firebase";
+import { firestore } from "../../../firebase";
 
 const Meme = ({ selectedImage, width, height }) => {
     //USER AUTHENTICATE:
@@ -99,7 +99,6 @@ const Meme = ({ selectedImage, width, height }) => {
 
     //6. Function which select action on created meme:
     const actionOnMeme = (id, canvasdata) => {
-        const user = auth.currentUser;
         if (id === 'download') {
             const a = document.createElement("a");
             a.download = "meme.png";
@@ -107,20 +106,21 @@ const Meme = ({ selectedImage, width, height }) => {
             document.body.appendChild(a);
             a.click();
         } else if (id === 'post') {
+            const memeId = idGenerator()
             const newMeme = {
-                index: idGenerator(),
+                index: memeId,
                 date: new Date(),
                 title,
                 creator: user.uid,
                 url: canvasdata,
-                likes: 0,
-                whoLiked: []
+                likes: [],
             };
             if (title === '') alert('You should add the title')
             else {
                 firestore
                     .collection('memes')
-                    .add(newMeme);
+                    .doc(`${memeId}`)
+                    .set(newMeme);
                 alert('Meme posted :)')
                 setTitle('')
                 setBottomText('')
