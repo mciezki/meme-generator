@@ -17,18 +17,19 @@ const Likes = ({ meme }) => {
 
         if (user) {
             if (likesUsers.includes(user.uid)) {
-                accountList = meme.likes.filter(element => {
+                accountList = likesUsers.filter(element => {
                     return element !== user.uid
                 })
             } else {
-                accountList = [...meme.likes, user.uid];
+                accountList = [...likesUsers, user.uid];
             };
 
             (async () => {
                 await memeRef.update({
                     likes: accountList
                 })
-                setLikesUsers(accountList)
+                const likesList = await memeRef.get()
+                setLikesUsers(likesList.data().likes)
             })()
         } else {
             return alert('You have to log in!')
