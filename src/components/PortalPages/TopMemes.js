@@ -35,7 +35,7 @@ const TopMemes = () => {
 
     return (
         <>
-            <p>Top 5 memów!</p>
+            <p>Top 5 memes!</p>
             <div className="HomePage">{topMemes.length > 0 ? memes : <p>Loading...</p>}</div>
         </>
     )
