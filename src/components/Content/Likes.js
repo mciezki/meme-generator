@@ -15,20 +15,24 @@ const Likes = ({ meme }) => {
         const memeRef = firestore.collection('memes').doc(`${memeId}`);
         let accountList = [];
 
-        if (likesUsers.includes(user.uid)) {
-            accountList = meme.likes.filter(element => {
-                return element !== user.uid
-            })
-        } else {
-            accountList = [...meme.likes, user.uid];
-        };
+        if (user) {
+            if (likesUsers.includes(user.uid)) {
+                accountList = meme.likes.filter(element => {
+                    return element !== user.uid
+                })
+            } else {
+                accountList = [...meme.likes, user.uid];
+            };
 
-        (async () => {
-            await memeRef.update({
-                likes: accountList
-            })
-            setLikesUsers(accountList)
-        })()
+            (async () => {
+                await memeRef.update({
+                    likes: accountList
+                })
+                setLikesUsers(accountList)
+            })()
+        } else {
+            return alert('You have to log in!')
+        }
     }
 
     return (
