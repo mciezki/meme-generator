@@ -18,8 +18,8 @@ const TopMemes = () => {
     // sort by likes
     if (topMemes.length >= 2) {
         topMemes.sort((e1, e2) => {
-            if (e1.likes.length < e2.likes.length) return -1
-            if (e1.likes.length > e2.likes.length) return 1
+            if (e1.likes.length < e2.likes.length) return 1
+            if (e1.likes.length > e2.likes.length) return -1
             return 0
         })
     }
