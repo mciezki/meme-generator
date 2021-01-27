@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 import { UserContext } from '../../store/UserProvider';
 import { firestore } from "../../firebase";
@@ -7,8 +7,14 @@ import { firestore } from "../../firebase";
 const Likes = ({ meme }) => {
     const { user } = useContext(UserContext);
 
-    const [likesUsers, setLikesUsers] = useState(meme.likes)
+    const [likesUsers, setLikesUsers] = useState([])
 
+    useEffect(() => {
+        (async () => {
+            const likesList = await firestore.collection('memes').doc(`${meme.index}`).get()
+            setLikesUsers(likesList.data().likes)
+        })()
+    })
 
     const like = (e) => {
         const memeId = e.target.id;
