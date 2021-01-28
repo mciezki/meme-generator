@@ -78,7 +78,7 @@ importScripts('https://www.gstatic.com/firebasejs/8.2.4/firebase-messaging.js');
 var firebaseConfig = {
   apiKey: "AIzaSyA5kSJGlUmKC9PftAV8LyHcpdjoaOwKbJ8",
   authDomain: "meme-generator-fe1c4.firebaseapp.com",
-  databaseURL: "https://meme-generator-fe1c4-default-rtdb.europe-west1.firebasedatabase.app",
+  databaseURL: "https://meme-generator2-default-rtdb.europe-west1.firebasedatabase.app/",
   projectId: "meme-generator-fe1c4",
   storageBucket: "meme-generator-fe1c4.appspot.com",
   messagingSenderId: "888796383810",
