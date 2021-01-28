@@ -76,14 +76,13 @@ importScripts('https://www.gstatic.com/firebasejs/8.2.4/firebase-messaging.js');
 
 
 var firebaseConfig = {
-  apiKey: "AIzaSyA5kSJGlUmKC9PftAV8LyHcpdjoaOwKbJ8",
-  authDomain: "meme-generator-fe1c4.firebaseapp.com",
-  databaseURL: "https://meme-generator2-default-rtdb.europe-west1.firebasedatabase.app/",
-  projectId: "meme-generator-fe1c4",
-  storageBucket: "meme-generator-fe1c4.appspot.com",
-  messagingSenderId: "888796383810",
-  appId: "1:888796383810:web:657b8ecffc3740a026fbdb",
-  measurementId: "G-8007NWQCGB"
+  apiKey: "AIzaSyAGKXGsU3TJzmpiYxXiou0b78KPxjLVEGc",
+  authDomain: "meme-generator3.firebaseapp.com",
+  databaseURL: "https://meme-generator3-default-rtdb.europe-west1.firebasedatabase.app/",
+  projectId: "meme-generator3",
+  storageBucket: "meme-generator3.appspot.com",
+  messagingSenderId: "852828033097",
+  appId: "1:852828033097:web:60e92d515f464ffdd1af98"
 };
 
 firebase.initializeApp(firebaseConfig);

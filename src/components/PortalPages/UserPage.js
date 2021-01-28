@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './HomePage.css'
 
 import { auth, firestore } from "../../firebase";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const UserPage = () => {
@@ -40,11 +41,11 @@ const UserPage = () => {
         <div className="memeContainer" key={meme.index} id={meme.index}>
             <p className="title">{meme.title}</p>
             <div className="likes">
-                <span className="like-num">Likes: {meme.likes.length}</span>
+                <span className="like-num">{meme.likes.length}</span>
             </div>
-            <img src={meme.url} alt="meme" />
+            <img className="memeimg" src={meme.url} alt="meme" />
             <p className="creator">Posted by: <span>{meme.creator}</span></p>
-            <button id={meme.index} onClick={deleteMeme}>Delete</button>
+            <button className="plus" id={meme.index} onClick={deleteMeme}><FontAwesomeIcon className="thumbup" icon="trash-alt" /></button>
         </div>))
 
 

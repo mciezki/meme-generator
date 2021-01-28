@@ -28,7 +28,7 @@ const HomePage = () => {
         <div className="memeContainer" key={meme.index} id={meme.index}>
             <p className="title">{meme.title}</p>
             <Likes meme={meme} />
-            <img src={meme.url} alt="meme" />
+            <img className="memeimg" src={meme.url} alt="meme" />
             <p className="creator">Posted by: <span>{meme.creator}</span></p>
         </div>
     ))

@@ -1,38 +1,223 @@
 .HomePage {
-    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.HomePage h4 {
+    padding-top: 15px;
+    color: #ddd;
 }
 
 .memeContainer {
+    position: relative;
     margin: 10px auto 20px;
+    width: 750px;
+    background-color: #222;
+    border-radius: 2%;
+}
+
+.memeContainer:first-of-type {
+    margin-top: 30px;
+}
+
+.memeContainer p.title {
+    float: left;
     width: 50%;
-    background-color: lightblue;
-    border-radius: 5%;
+    padding: 5px 0px 5px 25px;
+    margin-bottom: 15px;
+    text-align: left;
+    font-size: 24px;
+    font-weight: 700;
+    color: #ddd;
+    border-bottom: 2px solid #ddd;
 }
 
 .memeContainer .likes {
-    margin-bottom: 5px;
-    margin-left: 20px;
-    width: 20%;
-    background-color: #000;
+    float: left;
+    padding: 10px 25px 5px 0px;
+    margin-bottom: 15px;
+    width: 50%;
+    text-align: right;
     color: #fff;
-    border-radius: 15%;
-}
-
-.memeContainer .likes span {
-    margin: 0 5px 0;
-    font-size: 16px;
 }
 
 .memeContainer .likes span.like-num {
+    padding: 5px 15px;
+    font-size: 20px;
+    font-weight: 600;
+    background-color: #ddd;
+    color: #000;
+    border-radius: 50%;
     pointer-events: none;
 }
 
-.memeContainer .likes span.minus {
+.memeContainer .likes button.plus, button.plus {
+    padding: 5px 8px 0 15px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 24px;
+    color: #ddd;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    transition: 0.5s;
 }
 
-.memeContainer .likes span.plus {
-    cursor: pointer;
-    font-size: 18px;
+button.plus {
+    padding: 3px 0 6px 0;
+}
+
+img.memeimg {
+    border: 1px solid #ddd;
+}
+
+.memeContainer .likes button.plus:hover {
+    color: #2D88FF;
+}
+
+.thumbup {
+    pointer-events: none;
+}
+
+p.creator {
+    margin-top: 4px;
+    padding-bottom: 6px;
+    font-size: 14px;
+    color: #ddd;
+    font-weight: 400;
+}
+
+p.creator span {
+    font-weight: 700;
+}
+
+
+/* LANDSCAPE */
+@media (max-width: 737px) and (orientation: landscape) {
+    .memeContainer {
+        width: 700px;
+    }
+
+    img.memeimg {
+        width: 550px;
+    }
+}
+
+@media (max-width: 670px) and (orientation: landscape) {
+    .memeContainer {
+        width: 635px;
+    }
+
+    img.memeimg {
+        width: 485px;
+    }
+}
+
+@media (max-width: 650px) and (orientation: landscape) {
+    .memeContainer {
+        width: 620px;
+    }
+
+    img.memeimg {
+        width: 470px;
+    }
+}
+
+@media (max-width: 620px) and (orientation: landscape) {
+    .memeContainer {
+        width: 585px;
+    }
+
+    img.memeimg {
+        width: 435px;
+    }
+}
+
+@media (max-width: 580px) and (orientation: landscape) {
+    .memeContainer {
+        width: 545px;
+    }
+
+    img.memeimg {
+        width: 395px;
+    }
+}
+
+
+/* PORTRAIT */
+@media (max-width: 650px) and (orientation: portrait) {
+    .memeContainer {
+        width: 600px;
+    }
+
+    img.memeimg {
+        width: 560px;
+    }
+}
+
+@media (max-width: 540px) and (orientation: portrait) {
+    .memeContainer {
+        width: 500px;
+    }
+
+    img.memeimg {
+        width: 455px;
+    }
+
+    .memeContainer p.title {
+        font-size: 16px;
+    }
+  
+    
+    .memeContainer .likes span.like-num {
+        font-size: 12px;
+
+    }
+    
+    .memeContainer .likes button.plus {
+        font-size: 15px;
+    }
+    
+    p.creator {
+        font-size: 8px;
+    }
+}
+
+@media (max-width: 415px) and (orientation: portrait) {
+    .memeContainer {
+        width: 385px;
+    }
+
+    img.memeimg {
+        width: 340px;
+    }
+}
+
+@media (max-width: 376px) and (orientation: portrait) {
+    .memeContainer {
+        width: 345px;
+    }
+
+    img.memeimg {
+        width: 300px;
+    }
+}
+
+@media (max-width: 321px) and (orientation: portrait) {
+    .memeContainer {
+        width: 291px;
+    }
+
+    img.memeimg {
+        width: 246px;
+    }
+}
+
+@media (max-width: 281px) and (orientation: portrait) {
+    .memeContainer {
+        width: 251px;
+    }
+
+    img.memeimg {
+        width: 206px;
+    }
 }

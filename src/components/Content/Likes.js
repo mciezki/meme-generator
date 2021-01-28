@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { UserContext } from '../../store/UserProvider';
 import { firestore } from "../../firebase";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const Likes = ({ meme }) => {
@@ -20,6 +20,7 @@ const Likes = ({ meme }) => {
 
     const like = (e) => {
         const memeId = e.target.id;
+        console.log(e);
         const memeRef = firestore.collection('memes').doc(`${memeId}`);
         let accountList = [];
 
@@ -47,7 +48,7 @@ const Likes = ({ meme }) => {
     return (
         <div className="likes">
             <span className="like-num">{likesUsers.length}</span>
-            <button className="plus" id={meme.index} onClick={like}><FontAwesomeIcon icon="thumbs-up" /></button>
+            <button className="plus" id={meme.index} onClick={like}><FontAwesomeIcon className="thumbup" icon="thumbs-up" /></button>
         </div>
     )
 }

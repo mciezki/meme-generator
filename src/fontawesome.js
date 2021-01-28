@@ -1,6 +1,6 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 
-import { faHome, faUser, faHammer, faTrophy, faThumbsUp, faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faUser, faHammer, faTrophy, faThumbsUp, faSignInAlt, faSignOutAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
     faHome,
@@ -9,5 +9,6 @@ library.add(
     faTrophy,
     faThumbsUp,
     faSignInAlt,
-    faSignOutAlt
+    faSignOutAlt,
+    faTrashAlt,
 );

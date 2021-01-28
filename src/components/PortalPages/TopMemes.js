@@ -28,14 +28,13 @@ const TopMemes = () => {
         <div className="memeContainer" key={meme.index} id={meme.index}>
             <p className="title">{meme.title}</p>
             <Likes meme={meme} />
-            <img src={meme.url} alt="meme" />
+            <img className="memeimg" src={meme.url} alt="meme" />
             <p className="creator">Posted by: <span>{meme.creator}</span></p>
         </div>
     ))
 
     return (
         <>
-            <p>Top 5 memes!</p>
             <div className="HomePage">{topMemes.length > 0 ? memes : <p>Loading...</p>}</div>
         </>
     )
