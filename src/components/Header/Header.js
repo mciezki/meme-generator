@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './Header.css';
 
 const list = [
-    { icon: "home", name: "Start", path: "/", exact: true },
+    { icon: "home", name: "Home", path: "/", exact: true },
     { icon: "trophy", name: "Top Memes", path: "/topmemes" },
     { icon: "hammer", name: "Generator", path: "/generator" },
 ];
@@ -38,7 +38,7 @@ const Header = () => {
     return (
         <header>
             <button className="log" onClick={logInOut}>{user ? <FontAwesomeIcon icon="sign-out-alt" /> : <FontAwesomeIcon icon="sign-in-alt" />}</button>
-            <h1>Meme Generator</h1>
+            <h1 className="logo">MemeGen</h1>
             <nav className="main">
                 <ul className="nav-ul">
                     {menu}
