@@ -2,17 +2,22 @@ import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { UserContext } from '../../store/UserProvider';
 import { auth, signInWithGoogle } from "../../firebase";
+import { useWindowWidthAndHeight } from "../../CustomHooks"
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import './Header.css';
 
 const list = [
-    { name: "Start", path: "/", exact: true },
-    { name: "Top Memes", path: "/topmemes" },
-    { name: "Generator", path: "/generator" },
+    { icon: "home", name: "Start", path: "/", exact: true },
+    { icon: "trophy", name: "Top Memes", path: "/topmemes" },
+    { icon: "hammer", name: "Generator", path: "/generator" },
 ];
 
 const Header = () => {
     const { user } = useContext(UserContext);
+    // eslint-disable-next-line
+    const [width, height] = useWindowWidthAndHeight();
 
     const logInOut = () => {
         if (!user) {
@@ -20,19 +25,27 @@ const Header = () => {
         } else auth.signOut();
     }
 
-    const menu = list.map(element => (
-        <li key={element.name}><NavLink to={element.path} exact={element.exact ? element.exact : false}>{element.name}</NavLink></li>
-    ))
+    // eslint-disable-next-line
+    const menu = list.map(element => {
+        if (width >= 1024) {
+            return <li className="nav-list" key={element.name}><NavLink to={element.path} exact={element.exact ? element.exact : false}><FontAwesomeIcon icon={element.icon} /> {element.name}</NavLink></li>
+        } else if (width < 1024) {
+            return <li className="nav-list" key={element.name}><NavLink to={element.path} exact={element.exact ? element.exact : false}><FontAwesomeIcon icon={element.icon} /></NavLink></li>
+        }
+    })
 
 
     return (
         <header>
-            <button className="log" onClick={logInOut}>{user ? 'Logout' : 'Sign in with Google'}</button>
+            <button className="log" onClick={logInOut}>{user ? <FontAwesomeIcon icon="sign-out-alt" /> : <FontAwesomeIcon icon="sign-in-alt" />}</button>
             <h1>Meme Generator</h1>
             <nav className="main">
-                <ul>
+                <ul className="nav-ul">
                     {menu}
-                    {user ? <li key='profile'><NavLink to='/profile' exact={false}>User Profile</NavLink></li> : null}
+                    {user ? width >= 1024 ? <li className="nav-list" key='profile'><NavLink to='/profile' exact={false}><FontAwesomeIcon icon="user" /> User Profile</NavLink></li>
+                        :
+                        <li className="nav-list" key='profile'><NavLink to='/profile' exact={false}><FontAwesomeIcon icon="user" /></NavLink></li>
+                        : null}
                 </ul>
             </nav>
         </header>

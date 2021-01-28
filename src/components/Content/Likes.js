@@ -3,6 +3,8 @@ import React, { useContext, useState, useEffect } from 'react';
 import { UserContext } from '../../store/UserProvider';
 import { firestore } from "../../firebase";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 const Likes = ({ meme }) => {
     const { user } = useContext(UserContext);
@@ -45,7 +47,7 @@ const Likes = ({ meme }) => {
     return (
         <div className="likes">
             <span className="like-num">{likesUsers.length}</span>
-            <span className="plus" id={meme.index} onClick={like}>+</span>
+            <button className="plus" id={meme.index} onClick={like}><FontAwesomeIcon icon="thumbs-up" /></button>
         </div>
     )
 }
