@@ -5,7 +5,7 @@ import loading from '../../img/Splash/loading.gif'
 const SplashScreen = () => {
 
     const divStyle = {
-        backgroundColor: '#0099AA',
+        backgroundColor: '#444;',
         width: '100%',
         height: '100vh'
     }

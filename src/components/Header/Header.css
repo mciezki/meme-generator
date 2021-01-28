@@ -1,5 +1,6 @@
 header {
     position: relative;
+    width: 100%;
     min-height: 90px;
     background-color: #111;
     padding-bottom: 20px;
@@ -37,12 +38,13 @@ nav.main ul {
     display: flex;
     flex-direction: row;
     justify-content: left;
-    width: 50%;
+    width: 100%;
     list-style-type: none;
+    font-size: 20px;
 }
 
 nav.main ul li {
-    margin-right: 10px;
+    margin-right: 15px;
 }
 
 nav.main ul li a {
@@ -81,3 +83,148 @@ button.log:hover {
     color: rgb(0, 255, 13);
 }
 
+/* LANDSCAPE */
+
+@media (max-width: 1100px) and (orientation: landscape) {
+    h1.logo {
+        font-size: 24px;
+        min-width: 10%;
+    }
+
+}
+
+@media (max-width: 1024px) and (orientation: landscape) {
+    nav.main ul {
+        font-size: 45px;
+        justify-content: center;
+    }
+
+    nav.main ul li {
+        margin-right: 17px;
+    }
+}
+
+@media (max-width: 864px) and (orientation: landscape) {
+    nav.main ul {
+        font-size: 32px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 568px) and (orientation: landscape) {
+    h1.logo {
+        font-size: 20px;
+        min-width: 8%;
+    }
+    
+    nav.main ul {
+        font-size: 24px;
+        justify-content: center;
+    }
+}
+
+
+/* PORTRAIT */
+@media (max-width: 1024px) and (orientation: portrait) {
+    nav.main ul {
+        font-size: 45px;
+        justify-content: center;
+    }
+
+    nav.main ul li {
+        margin-right: 25px;
+    }
+}
+
+@media (max-width: 650px) and (orientation: portrait) {
+    h1.logo {
+        font-size: 20px;
+        min-width: 10%;
+    }
+
+    nav.main ul {
+        font-size: 35px;
+        justify-content: center;
+    }
+
+    nav.main ul li {
+        margin-right: 25px;
+    }
+}
+
+@media (max-width: 540px) and (orientation: portrait) {
+    h1.logo {
+        font-size: 18px;
+        min-width: 10%;
+    }
+
+    nav.main ul {
+        font-size: 28px;
+        justify-content: center;
+    }
+
+    nav.main ul li {
+        margin-right: 20px;
+    }
+
+    button.log {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 415px) and (orientation: portrait) {
+    h1.logo {
+        font-size: 14px;
+    }
+
+    nav.main ul {
+        font-size: 22px;
+        justify-content: center;
+    }
+
+    nav.main ul li {
+        margin-right: 18px;
+    }
+
+    button.log {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 375px) and (orientation: portrait) {
+    h1.logo {
+        font-size: 9px;
+    }
+
+    nav.main ul {
+        font-size: 17px;
+        justify-content: center;
+    }
+
+    nav.main ul li {
+        margin-right: 15px;
+    }
+
+    button.log {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 281px) and (orientation: portrait) {
+    h1.logo {
+        font-size: 7px;
+    }
+
+    nav.main ul {
+        font-size: 14px;
+        justify-content: center;
+    }
+
+    nav.main ul li {
+        margin-right: 10px;
+    }
+
+    button.log {
+        font-size: 12px;
+    }
+}

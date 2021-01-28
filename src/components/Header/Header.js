@@ -27,9 +27,9 @@ const Header = () => {
 
     // eslint-disable-next-line
     const menu = list.map(element => {
-        if (width >= 1024) {
+        if (width > 1024) {
             return <li className="nav-list" key={element.name}><NavLink to={element.path} exact={element.exact ? element.exact : false}><FontAwesomeIcon icon={element.icon} /> {element.name}</NavLink></li>
-        } else if (width < 1024) {
+        } else if (width <= 1024) {
             return <li className="nav-list" key={element.name}><NavLink to={element.path} exact={element.exact ? element.exact : false}><FontAwesomeIcon icon={element.icon} /></NavLink></li>
         }
     })
@@ -42,7 +42,7 @@ const Header = () => {
             <nav className="main">
                 <ul className="nav-ul">
                     {menu}
-                    {user ? width >= 1024 ? <li className="nav-list" key='profile'><NavLink to='/profile' exact={false}><FontAwesomeIcon icon="user" /> User Profile</NavLink></li>
+                    {user ? width > 1024 ? <li className="nav-list" key='profile'><NavLink to='/profile' exact={false}><FontAwesomeIcon icon="user" /> User Profile</NavLink></li>
                         :
                         <li className="nav-list" key='profile'><NavLink to='/profile' exact={false}><FontAwesomeIcon icon="user" /></NavLink></li>
                         : null}
