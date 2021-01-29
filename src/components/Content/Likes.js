@@ -16,7 +16,7 @@ const Likes = ({ meme }) => {
             const likesList = await firestore.collection('memes').doc(`${meme.index}`).get()
             setLikesUsers(likesList.data().likes)
         })()
-    })
+    }, [meme.index])
 
     const like = (e) => {
         const memeId = e.target.id;
