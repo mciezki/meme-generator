@@ -64,6 +64,11 @@
 
 button.plus {
     padding: 3px 0 6px 0;
+    transition: 0.5s;
+}
+
+button.plus:hover {
+    color: red;
 }
 
 img.memeimg {
