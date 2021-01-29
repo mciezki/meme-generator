@@ -10,20 +10,130 @@
     text-align: center;
   }
 
+  p.gen-info {
+    display: inline-block;
+    margin: 3vh auto;
+    padding: 0 20px 10px;
+    border-bottom: 2px solid #ddd;
+    font-weight: 700;
+    color: #ddd;
+  }
+
+  div.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
   .gallery-element {
     position: relative;
-    width: 15%;
-    margin: 0 auto;
+    flex-basis: 23%;
+    height: 18vw;
+    padding: 3vh 0;
+    background-color:  #222;
+    margin: 2vh auto;
+    border-radius: 2%;
     cursor: pointer;
   }
 
+  p.element-title {
+    color: #ddd;
+    font-weight: 400;
+  }
   
+
+/* LANDSCAPE */
+@media (max-width: 1400px) and (orientation: landscape) {
+  .gallery-element {
+    height: 20vw;
+  }
+}
+
+@media (max-width: 800px) and (orientation: landscape) {
+  p.element-title {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 670px) and (orientation: landscape) {
+  .gallery-element {
+    flex-basis: 30%;
+  }
+}
+
+/* PORTRAIT */
+
+@media (max-width: 1050px) and (orientation: portrait) {
+  .gallery-element {
+    height: 22vw;
+  }
+
+  .gallery-element {
+    flex-basis: 27%;
+  }
+}
+
+@media (max-width: 780px) and (orientation: portrait) {
+  .gallery-element {
+    height: 23vw;
+  }
+}
+
+@media (max-width: 600px) and (orientation: portrait) {
+  .gallery-element {
+    height: 27vw;
+  }
+
+  .gallery-element {
+    flex-basis: 45%;
+  }
+
+  p.element-title {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 420px) and (orientation: portrait) {
+  .gallery-element {
+    height: 31vw;
+  }
+
+  p.element-title {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 380px) and (orientation: portrait) {
+  .gallery-element {
+    height: 42vw;
+  }
+
+  .gallery-element {
+    flex-basis: 90%;
+  }
+
+  p.element-title {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 281px) and (orientation: portrait) {
+  .gallery-element {
+    height: 45vw;
+  }
+}
+
+/* GENERATOR VALUES */
+
   h2 {
     position: absolute; 
     left: 0;
     right: 0; 
     margin: 15px 0;
-    padding: 0 5px;
+    padding: 0 2vh;
     font-family: impact;
     font-size: 2.5em;
     text-transform: uppercase;

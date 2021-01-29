@@ -1,13 +1,79 @@
 import React from 'react';
+import { useWindowWidthAndHeight } from "../../../CustomHooks";
 
 const Images = ({ allMemeImg, selectImg }) => {
-    const allImages = allMemeImg.map(img => <p className="gallery-element" key={img.id} onClick={selectImg} data-url={img.url}>{img.name}</p>)
+    // eslint-disable-next-line
+    const [width, height] = useWindowWidthAndHeight();
 
-    return (
-        <div className="gallery">
-            {allMemeImg.length > 0 ? allImages : <span>Something is wrong...</span>}
+    const elementStyle = (src) => {
+        if (width > 600) {
+            return {
+                width: "20vw",
+                height: "15vw",
+                margin: "0 auto",
+                backgroundImage: `url(${src.url})`,
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+                backgroundClip: "content-box",
+                backgroundSize: "cover",
+                border: "1px solid #ddd",
+                borderRadius: "2%"
+            }
+        } else if (width < 600 && width > 380) {
+            return {
+                width: "40vw",
+                height: "19vw",
+                margin: "0 auto",
+                backgroundImage: `url(${src.url})`,
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+                backgroundClip: "content-box",
+                backgroundSize: "cover",
+                border: "1px solid #ddd",
+                borderRadius: "2%"
+            }
+        } else {
+            return {
+                width: "85vw",
+                height: "30vw",
+                margin: "0 auto",
+                backgroundImage: `url(${src.url})`,
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+                backgroundClip: "content-box",
+                backgroundSize: "cover",
+                border: "1px solid #ddd",
+                borderRadius: "2%"
+            }
+        }
+    }
+
+    const allImages = allMemeImg.map(img =>
+        <div className="gallery-element" key={img.id} onClick={selectImg} data-url={img.url} >
+            <div className="element-image" style={elementStyle(img)} data-url={img.url}></div>
+            <p className="element-title" data-url={img.url}>{img.name}</p>
         </div>
     )
+
+    return (
+        <>
+            <p className="gen-info">Select image to create meme:</p>
+            <div className="gallery">
+                {allMemeImg.length > 0 ? allImages : <span>Something is wrong...</span>}
+            </div>
+        </>
+    )
 }
+
+
+// const Images = ({ allMemeImg, selectImg }) => {
+//     const allImages = allMemeImg.map(img => <p className="gallery-element" key={img.id} onClick={selectImg} data-url={img.url}>{img.name}</p>)
+
+//     return (
+//         <div className="gallery">
+//             {allMemeImg.length > 0 ? allImages : <span>Something is wrong...</span>}
+//         </div>
+//     )
+// }
 
 export default Images;
