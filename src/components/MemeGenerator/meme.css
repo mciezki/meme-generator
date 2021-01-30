@@ -171,17 +171,17 @@ div.blur {
 
 .memegen {
   position: absolute;
-  top: 5%;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 85%;
-  min-height: 85vh;
-  max-height: calc(100vh - 210px);
+  min-height: 95vh;
+  max-height: calc(100vh - 90px);
   overflow-y: scroll;
   overflow-x: hidden;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  margin-top: 50px;
+  margin-top: 20px;
   background-color: #222;
   border-radius: 2%;
   border: 1px solid #ddd;
@@ -243,7 +243,7 @@ form input.input-fz {
 
 #createdMeme {
   display: block;
-  margin: 40px 35px 20px;
+  margin: 15px 35px 15px;
   border: 1px solid #ddd;
 }
 
