@@ -296,6 +296,11 @@ form input.input-fz {
     -2px 0px 0 #000,
     2px 2px 5px #000;
   }
+
+  #uppertxt, #bottomtxt {
+    font-family: impact;
+    src: local('Rajdhani'), url(../../fonts/impact.ttf) format('truetype');
+  }
   
   .bottom {
      bottom: 0;
