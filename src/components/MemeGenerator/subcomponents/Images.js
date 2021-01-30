@@ -56,24 +56,14 @@ const Images = ({ allMemeImg, selectImg }) => {
     )
 
     return (
-        <>
+        <div className="gallery-container">
             <p className="gen-info">Select image to create meme:</p>
             <div className="gallery">
                 {allMemeImg.length > 0 ? allImages : <span>Something is wrong...</span>}
             </div>
-        </>
+        </div>
     )
 }
 
-
-// const Images = ({ allMemeImg, selectImg }) => {
-//     const allImages = allMemeImg.map(img => <p className="gallery-element" key={img.id} onClick={selectImg} data-url={img.url}>{img.name}</p>)
-
-//     return (
-//         <div className="gallery">
-//             {allMemeImg.length > 0 ? allImages : <span>Something is wrong...</span>}
-//         </div>
-//     )
-// }
 
 export default Images;

@@ -10,6 +10,11 @@
     text-align: center;
   }
 
+.gallery-container {
+  width: 100%;
+  min-height: 100vh;
+}
+
   p.gen-info {
     display: inline-block;
     margin: 3vh auto;
@@ -128,6 +133,147 @@
 
 /* GENERATOR VALUES */
 
+.exit {
+  position: sticky;
+  top: 5px;
+  right: 5px;
+  float: right;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  color: #ddd;
+  background-color: #222;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.exit:hover {
+  background-color: #ddd;
+  color: #222;
+}
+
+div.blur {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  animation: modalAppear 0.5s linear forwards;
+}
+
+.blured {
+  animation: blurAppear 0.5s linear forwards;
+}
+
+.memegen {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  min-height: 85vh;
+  max-height: calc(100vh - 210px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  margin-top: 50px;
+  background-color: #222;
+  border-radius: 2%;
+  border: 1px solid #ddd;
+}
+
+.memegen::-webkit-scrollbar {
+  display: none;
+} 
+
+form {
+  position: absolute;
+  top: 60px;
+  right: 12.5%;
+  color: #ddd;
+  text-align: center;
+}
+
+form label, form input {
+  display: block;
+  text-align: center;
+}
+
+form label {
+  margin-bottom: 5px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+form label:last-of-type {
+  margin-top: 25px;
+}
+
+form input {
+  padding: 5px 42px;
+  margin-bottom: 5px;
+  border: 2px solid #ddd;
+  border-radius: 15%;
+  outline: none;
+  color: #ddd;
+  background-color: #222;
+  transition: 0.5s;
+}
+
+form input:focus {
+  color: #222;
+  background-color: #ddd;
+  border-color: #555;
+}
+
+form input.input-title {
+  margin-bottom: 25px;
+}
+
+form input.input-fz {
+  padding: 5px 10px;
+  width: 75px;
+  margin: 0 auto;
+}
+
+#createdMeme {
+  display: block;
+  margin: 40px 35px 20px;
+  border: 1px solid #ddd;
+}
+
+.download-post {
+  position: absolute;
+  top: 400px;
+  right: 15%;
+}
+
+.download-post button {
+  display: block;
+  margin: 5px auto;
+  padding: 8px 15px;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #ddd;
+  border: 2px solid #ddd;
+  border-radius: 15%;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.download-post button:hover {
+  background-color: #ddd;
+  color: #222;
+}
+
+
   h2 {
     position: absolute; 
     left: 0;
@@ -135,6 +281,7 @@
     margin: 15px 0;
     padding: 0 2vh;
     font-family: impact;
+    src: local('Rajdhani'), url(../../fonts/impact.ttf) format('truetype');
     font-size: 2.5em;
     text-transform: uppercase;
     color: white;
@@ -157,3 +304,26 @@
   .top {
      top: 0;
    }
+
+
+   /* ANIMATIONS */
+
+@keyframes blurAppear {
+  0% {
+      filter: blur(0px)
+  }
+
+  100% {
+      filter: blur(8px);
+  }
+}
+
+@keyframes modalAppear {
+  0% {
+      opacity: 0
+  }
+
+  100% {
+      opacity: 1;
+  }
+}

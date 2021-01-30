@@ -7,6 +7,8 @@ const MemeGenerator = () => {
     const [selectedImage, setSelectedImage] = useState('');
     const [allMemeImg, setAllMemeImg] = useState([]);
 
+    const [modalOpen, setModalOpen] = useState('')
+
     const [selectedImageWidth, setSelectedImageWidth] = useState('')
     const [selectedImageHeight, setSelectedImageHeight] = useState('')
 
@@ -36,16 +38,24 @@ const MemeGenerator = () => {
             setSelectedImage(dataURL);
             setSelectedImageWidth(`${base64img.width}px`);
             setSelectedImageHeight(`${base64img.height}px`);
-            const chosen = document.querySelector('.maingen');
-            chosen.scrollIntoView({ behavior: "smooth" });
+            setModalOpen(true);
+            document.querySelector('header').classList.add('blured');
+            document.querySelector('.gallery-container').classList.add('blured');
         }
+    }
+
+    const exitGen = () => {
+        setModalOpen(false);
+        document.querySelector('header').classList.remove('blured');
+        document.querySelector('.gallery-container').classList.remove('blured');
     }
 
 
     return (
         <div className='maingen'>
-            {selectedImage && selectedImageHeight ? <Meme selectedImage={selectedImage} width={selectedImageWidth} height={selectedImageHeight} /> : null}
+            {/* {selectedImage && selectedImageHeight ? <Meme selectedImage={selectedImage} width={selectedImageWidth} height={selectedImageHeight} /> : null} */}
             <Images allMemeImg={allMemeImg} selectImg={handleClick} />
+            {modalOpen ? selectedImage && selectedImageHeight ? <Meme selectedImage={selectedImage} width={selectedImageWidth} height={selectedImageHeight} exitGen={exitGen} /> : null : null}
         </div>
     )
 }

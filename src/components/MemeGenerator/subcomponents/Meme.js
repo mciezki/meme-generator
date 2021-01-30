@@ -5,7 +5,7 @@ import Form from './Form';
 import { UserContext } from '../../../store/UserProvider';
 import { firestore } from "../../../firebase";
 
-const Meme = ({ selectedImage, width, height }) => {
+const Meme = ({ selectedImage, width, height, exitGen }) => {
     //USER AUTHENTICATE:
     const { user } = useContext(UserContext);
 
@@ -158,51 +158,54 @@ const Meme = ({ selectedImage, width, height }) => {
 
 
     return (
-        <div className="memegen">
-            <Form title={title} upperValue={upperText} bottomValue={bottomText} textSize={textSize}
-                handleChange={handleChange} />
-            <svg
-                id="createdMeme"
-                width={width}
-                height={height}
-                xmlns="http://www.w3.org/2000/svg"
-                xmlnsXlink="http://www.w3.org/1999/xlink">
-                <image
-                    id="svgImage"
-                    xlinkHref={selectedImage}
-                    height={height}
+        <div className="blur">
+            <div className="memegen">
+                <div className="exit" onClick={exitGen}>X</div>
+                <Form title={title} upperValue={upperText} bottomValue={bottomText} textSize={textSize}
+                    handleChange={handleChange} />
+                <svg
+                    id="createdMeme"
                     width={width}
-                />
-                <text
-                    id="uppertxt"
-                    style={{ ...textStyle, fontSize: `${textSize}px` }}
-                    x={upperX}
-                    y={upperY}
-                    dominantBaseline="middle"
-                    textAnchor="middle"
-                    onMouseDown={handleMouseDown}
-                    onMouseUp={handleMouseUp}
-                >
-                    {upperText}
-                </text>
-                <text
-                    id="bottomtxt"
-                    style={{ ...textStyle, fontSize: `${textSize}px` }}
-                    x={bottomX}
-                    y={bottomY}
-                    dominantBaseline="middle"
-                    textAnchor="middle"
-                    onMouseDown={handleMouseDown}
-                    onMouseUp={handleMouseUp}
-                >
-                    {bottomText}
-                </text>
-            </svg>
-            <br />
-            <button id='download' onClick={manageMeme}>Download Meme</button>
-            <br />
-            {user ? <button id='post' onClick={manageMeme}>Post Meme</button> : null}
-        </ div>
+                    height={height}
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlnsXlink="http://www.w3.org/1999/xlink">
+                    <image
+                        id="svgImage"
+                        xlinkHref={selectedImage}
+                        height={height}
+                        width={width}
+                    />
+                    <text
+                        id="uppertxt"
+                        style={{ ...textStyle, fontSize: `${textSize}px` }}
+                        x={upperX}
+                        y={upperY}
+                        dominantBaseline="middle"
+                        textAnchor="middle"
+                        onMouseDown={handleMouseDown}
+                        onMouseUp={handleMouseUp}
+                    >
+                        {upperText}
+                    </text>
+                    <text
+                        id="bottomtxt"
+                        style={{ ...textStyle, fontSize: `${textSize}px` }}
+                        x={bottomX}
+                        y={bottomY}
+                        dominantBaseline="middle"
+                        textAnchor="middle"
+                        onMouseDown={handleMouseDown}
+                        onMouseUp={handleMouseUp}
+                    >
+                        {bottomText}
+                    </text>
+                </svg>
+                <div className="download-post">
+                    <button id='download' onClick={manageMeme}>Download Meme</button>
+                    {user ? <button id='post' onClick={manageMeme}>Post Meme</button> : null}
+                </div>
+            </ div>
+        </div>
     )
 }
 
