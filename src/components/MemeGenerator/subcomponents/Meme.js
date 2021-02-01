@@ -1,9 +1,10 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import '../meme.css';
 
 import Form from './Form';
 import { UserContext } from '../../../store/UserProvider';
 import { firestore } from "../../../firebase";
+
 
 const Meme = ({ selectedImage, width, height, exitGen }) => {
     //USER AUTHENTICATE:
@@ -76,16 +77,6 @@ const Meme = ({ selectedImage, width, height, exitGen }) => {
     }, [])
 
 
-    //4. useEffect hook - update of changing state:
-    useEffect(() => {
-        if (isGrabbed) document.addEventListener('mousemove', handleMouseMove);
-
-        return () => {
-            document.removeEventListener('mousemove', handleMouseMove);
-        }
-    }, [handleMouseMove, handleMouseUp, isGrabbed])
-
-
     //5. Meme ID generator
     const idGenerator = () => {
         let result = '';
@@ -137,8 +128,11 @@ const Meme = ({ selectedImage, width, height, exitGen }) => {
         const canvas = document.createElement("canvas");
         canvas.setAttribute("id", "canvas");
         const svgSize = svg.getBoundingClientRect();
-        canvas.width = svgSize.width;
-        canvas.height = svgSize.height;
+        const wrh = svgSize.width / svgSize.height;
+        const svgWidth = 700;
+        const svgHeight = svgWidth / wrh;
+        canvas.width = svgWidth;
+        canvas.height = svgHeight;
         const img = document.createElement("img");
         img.setAttribute("src", "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svgData))));
         img.onload = function () {
@@ -183,7 +177,11 @@ const Meme = ({ selectedImage, width, height, exitGen }) => {
                         dominantBaseline="middle"
                         textAnchor="middle"
                         onMouseDown={handleMouseDown}
+                        onMouseMove={handleMouseMove}
                         onMouseUp={handleMouseUp}
+                        onTouchStart={handleMouseDown}
+                        onTouchMove={handleMouseMove}
+                        onTouchEnd={handleMouseUp}
                     >
                         {upperText}
                     </text>
@@ -195,7 +193,11 @@ const Meme = ({ selectedImage, width, height, exitGen }) => {
                         dominantBaseline="middle"
                         textAnchor="middle"
                         onMouseDown={handleMouseDown}
+                        onMouseMove={handleMouseMove}
                         onMouseUp={handleMouseUp}
+                        onTouchStart={handleMouseDown}
+                        onTouchMove={handleMouseMove}
+                        onTouchEnd={handleMouseUp}
                     >
                         {bottomText}
                     </text>

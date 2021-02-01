@@ -12,8 +12,9 @@ const Form = ({ title, upperValue, bottomValue, textSize, handleChange }) => {
                 value={title}
                 onChange={handleChange}
             />
-            <label>Add text: </label>
+            <label className="text-label">Add text: </label>
             <input
+                className="text-input"
                 type="text"
                 name="upperText"
                 placeholder="Upper Text"
@@ -21,13 +22,14 @@ const Form = ({ title, upperValue, bottomValue, textSize, handleChange }) => {
                 onChange={handleChange}
             />
             <input
+                className="text-input"
                 type="text"
                 name="bottomText"
                 placeholder="Bottom Text"
                 value={bottomValue}
                 onChange={handleChange}
             />
-            <label>Font Size: </label>
+            <label className="text-label">Font Size: </label>
             <input
                 className="input-fz"
                 type="number"

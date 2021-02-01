@@ -148,6 +148,7 @@
   font-size: 20px;
   cursor: pointer;
   transition: 0.5s;
+  z-index: 1000;
 }
 
 .exit:hover {
@@ -309,6 +310,185 @@ form input.input-fz {
   .top {
      top: 0;
    }
+
+
+   /* LANDSCAPE */
+
+@media (max-width: 1367px) and (orientation: landscape) {
+  form {
+    top: 60px;
+    right: 8.5%;
+  }
+
+  .download-post {
+    top: 400px;
+    right: 11.5%;
+  }
+}
+
+@media (max-width: 1220px) and (orientation: landscape) {
+  #createdMeme {
+    margin: 220px auto 15px;
+  }
+
+  form {
+    width: 100%;;
+    top: 10px;
+    left: 50%;
+    right: 0;
+    transform: translateX(-50%);
+  }
+
+  .download-post {
+    top: 150px;
+    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .download-post button {
+  display: inline-block;
+  margin-right: 10px;
+  }
+
+  form input.input-title {
+    margin: 0 auto 1px;
+  }
+
+  .text-label {
+    display: inline-block;
+    margin-right: 5px;
+  }
+
+  .text-input {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  .input-fz {
+    display: inline-block;
+  }
+}
+
+@media (max-width: 911px) and (orientation: landscape) {
+  form {
+    font-size: 10px;
+  }
+
+  form input.input-title {
+    margin: 0 auto 4px;
+  }
+
+  .download-post {
+    top: 120px;
+  }
+  
+  .download-post button {
+    font-size: 10px;
+    margin-top: 10px;
+    }
+
+    #createdMeme {
+      margin: 100px 0 5px;
+      transform: scale(0.73);
+    }
+}
+
+@media (max-width: 837px) and (orientation: landscape) {
+  form label:last-of-type {
+    display: block;
+    margin-top: 10px;
+  }
+
+  .download-post {
+    top: 170px;
+  }
+
+  #createdMeme {
+    margin: 160px 0 5px;
+  }
+}
+
+@media (max-width: 740px) and (orientation: landscape) {
+  form {
+    font-size: 10px;
+  }
+
+  form input.input-title {
+    margin: 0 auto 4px;
+  }
+
+  form label:last-of-type {
+    display: block;
+    margin-top: 10px;
+  }
+
+  .download-post {
+    top: 170px;
+  }
+
+  #createdMeme {
+    margin: 170px -39px 5px;
+  }
+}
+
+@media (max-width: 721px) and (orientation: landscape) {
+  #createdMeme {
+    margin: 160px -45px 5px;
+  }
+}
+
+@media (max-width: 668px) and (orientation: landscape) {
+  form input {
+    padding: 5px 30px;
+  }
+
+  form {
+    font-size: 8px;
+  }
+
+  #createdMeme {
+    margin: 160px -65px 5px;
+  }
+}
+
+@media (max-width: 654px) and (orientation: landscape) {
+  form input {
+    padding: 5px 30px;
+  }
+}
+
+@media (max-width: 641px) and (orientation: landscape) {
+  #createdMeme {
+    margin: 160px -77px 5px;
+  }
+}
+
+@media (max-width: 569px) and (orientation: landscape) {
+  form input {
+    padding: 5px 20px;
+  }
+
+  #createdMeme {
+    margin: 160px -110px 5px;
+    transform: scale(0.60);
+  }
+}
+
+@media (max-width: 480px) and (orientation: landscape) {
+  form {
+    font-size: 5px;
+  }
+
+  form input {
+    padding: 5px 10px;
+  }
+
+  #createdMeme {
+    margin: 160px -110px 5px;
+  }
+}
+
 
 
    /* ANIMATIONS */

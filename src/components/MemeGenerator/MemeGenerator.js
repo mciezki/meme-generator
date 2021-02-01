@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import Meme from './subcomponents/Meme';
 import Images from './subcomponents/Images';
 
+import { useWindowWidthAndHeight } from "../../CustomHooks"
+
 const MemeGenerator = () => {
     const [selectedImage, setSelectedImage] = useState('');
     const [allMemeImg, setAllMemeImg] = useState([]);
@@ -11,6 +13,9 @@ const MemeGenerator = () => {
 
     const [selectedImageWidth, setSelectedImageWidth] = useState('')
     const [selectedImageHeight, setSelectedImageHeight] = useState('')
+
+    // eslint-disable-next-line
+    const [width, height] = useWindowWidthAndHeight();
 
     useEffect(() => {
         fetch("https://api.imgflip.com/get_memes")
@@ -21,8 +26,17 @@ const MemeGenerator = () => {
             })
     }, [])
 
+    const checkMobile = () => {
+        if (width < 1025 && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            if (document.documentElement.requestFullscreen) document.querySelector(".App").requestFullscreen();
+            else if (document.documentElement.webkitRequestFullScreen) document.querySelector(".App").webkitRequestFullScreen();
+            window.screen.orientation.lock("landscape-primary")
+        }
+    }
+
 
     const handleClick = (e) => {
+        checkMobile();
         const { url } = e.target.dataset;
         const base64img = document.createElement("canvas");
         const baseImage = new Image();
@@ -48,12 +62,14 @@ const MemeGenerator = () => {
         setModalOpen(false);
         document.querySelector('header').classList.remove('blured');
         document.querySelector('.gallery-container').classList.remove('blured');
+        if (width < 1025 && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            window.screen.orientation.unlock();
+        }
     }
 
 
     return (
         <div className='maingen'>
-            {/* {selectedImage && selectedImageHeight ? <Meme selectedImage={selectedImage} width={selectedImageWidth} height={selectedImageHeight} /> : null} */}
             <Images allMemeImg={allMemeImg} selectImg={handleClick} />
             {modalOpen ? selectedImage && selectedImageHeight ? <Meme selectedImage={selectedImage} width={selectedImageWidth} height={selectedImageHeight} exitGen={exitGen} /> : null : null}
         </div>
