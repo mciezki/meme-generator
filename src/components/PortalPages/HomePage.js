@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Likes from '../Content/Likes';
 import './HomePage.css';
 
-import { firestore } from "../../firebase";
+import { analytics, firestore } from "../../firebase";
 
 
 const HomePage = () => {
     const [postedMemes, setPostedMemes] = useState([])
 
     useEffect(() => {
+        analytics.logEvent("homepage_visited");
         (async () => {
             const snapshot = await firestore.collection('memes').get()
             setPostedMemes(snapshot.docs.map(doc => doc.data()))

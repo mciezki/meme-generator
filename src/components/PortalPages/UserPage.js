@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './HomePage.css'
 
-import { auth, firestore } from "../../firebase";
+import { analytics, auth, firestore } from "../../firebase";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
@@ -10,10 +10,12 @@ const UserPage = () => {
     const user = auth.currentUser;
 
     useEffect(() => {
-        (async () => {
-            const snapshot = await firestore.collection('memes').get()
-            setUserMemes(snapshot.docs.map(doc => doc.data()))
-        })()
+        analytics.logEvent("userpage_visited")
+
+            (async () => {
+                const snapshot = await firestore.collection('memes').get()
+                setUserMemes(snapshot.docs.map(doc => doc.data()))
+            })()
     }, [])
 
     if (userMemes.length >= 2) {

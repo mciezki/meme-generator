@@ -4,6 +4,7 @@ import Meme from './subcomponents/Meme';
 import Images from './subcomponents/Images';
 
 import { useWindowWidthAndHeight } from "../../CustomHooks"
+import { analytics } from '../../firebase';
 
 const MemeGenerator = () => {
     const [selectedImage, setSelectedImage] = useState('');
@@ -18,6 +19,8 @@ const MemeGenerator = () => {
     const [width, height] = useWindowWidthAndHeight();
 
     useEffect(() => {
+        analytics.logEvent("generator_visited")
+
         fetch("https://api.imgflip.com/get_memes")
             .then(response => response.json())
             .then(response => {

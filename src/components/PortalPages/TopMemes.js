@@ -2,17 +2,19 @@ import React, { useState, useEffect } from 'react';
 import Likes from '../Content/Likes';
 import './HomePage.css'
 
-import { firestore } from "../../firebase";
+import { analytics, firestore } from "../../firebase";
 
 
 const TopMemes = () => {
     const [topMemes, setTopMemes] = useState([])
 
     useEffect(() => {
-        (async () => {
-            const snapshot = await firestore.collection('memes').get()
-            setTopMemes(snapshot.docs.map(doc => doc.data()))
-        })()
+        analytics.logEvent("toppage_visited")
+
+            (async () => {
+                const snapshot = await firestore.collection('memes').get()
+                setTopMemes(snapshot.docs.map(doc => doc.data()))
+            })()
     }, [])
 
     // sort by likes
